@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Song Details</title>
+
+</head>
+<body>
+<!--<div>-->
+<!--    <th:block th:text="${artist}"></th:block>-->
+<!--</div>-->
+<!-- dynamically display data -->
+<main th:if="${songDetails}">
+    <header>
+        <h1><th:block th:text="${songDetails.getTitle()}"></th:block></h1>
+    </header>
+    <section>
+        <h2><th:block th:text="${songDetails.getGenre()}"></th:block></h2>
+        <h2><th:block th:text="${songDetails.getReleaseYear()}"></th:block></h2>
+        <h2>Performers:</h2>
+        <ul>
+            <li th:each="performer : ${songDetails.getPerformers()}">
+                <th:block th:text="${performer.getFirstName()}"></th:block>
+                <span> </span>
+                <th:block th:text="${performer.getLastName()}"></th:block>
+            </li>
+        </ul>
+    </section>
+</main>
+<div th:unless="${songDetails}">
+    <th:block th:text="${nullArgs}"></th:block>
+</div>
+</body>
+</html>
