@@ -10,4 +10,8 @@ public interface EventService {
 
     List<Event> searchEventsByName(String text);
     List<Event> searchEventByRating(double rating);
+
+    List<Event> filterEventsByLocationName(String locationName);
+    List<Event> filterEventsByLocationCity(String locationCity);
+    List<Event> filterEventsByLocationCountry(String locationCountry);
 }

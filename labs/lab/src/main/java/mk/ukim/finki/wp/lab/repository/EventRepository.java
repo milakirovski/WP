@@ -2,6 +2,7 @@ package mk.ukim.finki.wp.lab.repository;
 
 import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
 import mk.ukim.finki.wp.lab.model.Event;
+import mk.ukim.finki.wp.lab.model.Location;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,8 +16,8 @@ public class EventRepository {
         return DataHolder.events;
     }
 
-    public Event createEvent(String name, String description, double score) {
-        return new Event(name, description, score);
+    public Event createEvent(String name, String description, double score, Location location) {
+        return new Event(name, description, score, location);
     }
 
     public void deleteEventByName(String name) {

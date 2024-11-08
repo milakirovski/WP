@@ -43,4 +43,25 @@ public class EventServiceImpl implements EventService {
                 .filter(event -> event.getPopularityScore() >= rating)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Event> filterEventsByLocationName(String locationName) {
+        return eventRepository.findAll().stream()
+                .filter(event -> event.getLocation().getName().toLowerCase().contains(locationName.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Event> filterEventsByLocationCity(String locationCity) {
+        return eventRepository.findAll().stream()
+                .filter(event -> event.getLocation().getCity().toLowerCase().contains(locationCity.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Event> filterEventsByLocationCountry(String locationCountry) {
+        return  eventRepository.findAll().stream()
+                .filter(event -> event.getLocation().getCountry().toLowerCase().contains(locationCountry.toLowerCase()))
+                .collect(Collectors.toList());
+    }
 }

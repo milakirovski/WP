@@ -34,6 +34,12 @@ public class EventListServlet extends HttpServlet {
 
         WebContext context = new WebContext(iWebExchange);
 
+        //for filter by Location
+        String locationName = req.getParameter("locationName");
+        String locationCity = req.getParameter("locationCity");
+        String locationCountry = req.getParameter("locationCountry");
+
+
         // for search
         String searchString = req.getParameter("searchName");
         String searchRating = req.getParameter("searchRating");
@@ -42,21 +48,31 @@ public class EventListServlet extends HttpServlet {
         //setirame variabli vo context-ot
         context.setVariable("events", this.eventService.listAll());
 
-        if(searchString != null && searchRating != null && !searchString.isEmpty() && !searchRating.isEmpty()) {
-            searchString = searchString.trim();
-            searchRatingDouble = Double.parseDouble(searchRating.trim());
-        }else {
-            templateEngine.process("listEvents.html", context, resp.getWriter());
-            return;
+        //proverka input za filter by location
+        if(locationName != null && !locationName.isEmpty()) {
+            context.setVariable("locationName", locationName.trim());
+            context.setVariable("locationsFilteredByName", this.eventService.filterEventsByLocationName(locationName));
+        }
+        if(locationCity != null && !locationCity.isEmpty()) {
+            context.setVariable("locationCity", locationCity.trim());
+            context.setVariable("locationsFilteredByCity", this.eventService.filterEventsByLocationCity(locationCity));
+        }
+        if(locationCountry != null && !locationCountry.isEmpty()) {
+            context.setVariable("locationCountry", locationCountry.trim());
+            context.setVariable("locationsFilteredByCountry", this.eventService.filterEventsByLocationCountry(locationCountry));
         }
 
-        context.setVariable("filterEventsByName", this.eventService.searchEventsByName(searchString));
-        context.setVariable("filterEventsByRating", this.eventService.searchEventByRating(searchRatingDouble));
-
-        context.setVariable("searchString", searchString);
-        context.setVariable("searchRating", searchRating);
-
-
+        //proverka input za search by name or rating
+        if(searchString != null  && !searchString.isEmpty()) {
+            searchString = searchString.trim();
+            context.setVariable("searchString", searchString);
+            context.setVariable("filterEventsByName", this.eventService.searchEventsByName(searchString));
+        }
+        if(searchRating != null && !searchRating.isEmpty()){
+            searchRatingDouble = Double.parseDouble(searchRating.trim());
+            context.setVariable("searchRating", searchRating);
+            context.setVariable("filterEventsByRating", this.eventService.searchEventByRating(searchRatingDouble));
+        }
 
         templateEngine.process("listEvents.html", context, resp.getWriter());
 
