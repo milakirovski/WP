@@ -6,6 +6,7 @@ import mk.ukim.finki.wp.lab.model.Location;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 //CRUD operations
 //For handling in-memory storage events
@@ -20,11 +21,26 @@ public class EventRepository {
         return new Event(name, description, score, location);
     }
 
+
     public void deleteEventByName(String name) {
         DataHolder.events.removeIf(event -> event.getName().equalsIgnoreCase(name));
     }
 
-    public void addEvent(Event event) {
+    public Optional<Event> save(String name, String description, double popularityScore, Location location) {
+
+        DataHolder.events.removeIf(ev -> ev.getName().equalsIgnoreCase(name));
+
+        Event event = createEvent(name, description, popularityScore, location);
         DataHolder.events.add(event);
+        return Optional.of(event);
+
+    }
+
+    public Optional<Event> findById(long id) {
+        return DataHolder.events.stream().filter(event -> event.getId().equals(id)).findFirst();
+    }
+
+    public void deleteEventById(long id) {
+        DataHolder.events.removeIf(event -> event.getId().equals(id));
     }
 }

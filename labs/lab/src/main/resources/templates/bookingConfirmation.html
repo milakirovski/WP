@@ -26,7 +26,6 @@
 <body>
 <!-- Display error message if exists -->
 <section>
-
     <h2 th:if="${errorMessage}" th:text="${errorMessage}" id="notValidInput"></h2>
 
     <header>
@@ -48,11 +47,11 @@
         </tr>
         <tr>
             <td><b>Booking for Event</b></td>
-            <td><th:block th:text="${event}"></th:block></td>
+            <td><th:block th:text="${selectedEventName}"></th:block></td>
         </tr>
         <tr>
             <td><b>Number of tickets</b></td>
-            <td><th:block th:text="${numOfTickets}"></th:block></td>
+            <td><th:block th:text="${numTicks}"></th:block></td>
         </tr>
     </table>
 </section>

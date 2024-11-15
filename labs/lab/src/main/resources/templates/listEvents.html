@@ -8,20 +8,57 @@
             width: 800px;
             margin: auto;
         }
-        .label{
+
+        .label {
             font-style: oblique;
             font-size: medium;
         }
+        .buttons{
+            display: flex;
+        }
+        .delete-button {
+            background: #e63b3b;
+            margin-right: 20px;
+            padding: 5px;
+            border: black solid 1px;
 
-        .filterHighlight, strong{
+        }
+        .delete-button i{
+            color: black;
+            font-size: medium;
+        }
+        .edit-button{
+            background: #73c6c6;
+            padding: 5px;
+            border: black solid 1px;
+        }
+        .edit-button a i{
+            color: black;
+            font-size:medium;
+        }
+        .add-button{
+            background: burlywood;
+            font-size: medium;
+            width: 200px;
+        }
+        .add-button-div{
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .filterHighlight, strong {
             color: darkcyan;
             font-size: large;
         }
 
-        .notAvailableEvent{
+        .notAvailableEvent {
             color: red;
-            font-family: "Times New Roman";
+            font-family: "Times New Roman",serif;
             font-size: large;
+        }
+        footer{
+            margin-top: 50px;
         }
 
     </style>
@@ -31,8 +68,8 @@
     <h1>Welcome to our Event Booking App</h1>
 </header>
 <main>
-    <!-- Filter events based on the location bonus -->
-    <form th:method="GET" th:action="@{/event-list}">
+    <!-- DONE !--> <!-- Filter events based on the location bonus -->
+    <form action="/events" method="get">
         <h3>Filter by Location</h3>
         <label>Filter event by Name: </label>
         <input type="text" name="locationName">
@@ -42,12 +79,12 @@
         <input type="text" name="locationCity">
         <br>
         <br>
-        <label>Filter event by  Country: </label>
+        <label>Filter event by Country: </label>
         <input type="text" name="locationCountry">
         <br>
         <input type="submit" value="Filter">
 
-        <section th:if="${locationName}">
+        <section th:if="${ln}">
             <ul th:if="${locationsFilteredByName}">
                 <li th:each="ev1 : ${locationsFilteredByName}">
                     <th:block th:text="${ev1.name}"></th:block>
@@ -57,10 +94,12 @@
                 </li>
             </ul>
             <div th:if="${locationsFilteredByName.isEmpty()}">
-                <p class="notAvailableEvent">No available events in location <th:block th:text="${locationName}"></th:block></p>
+                <p class="notAvailableEvent">No available events in location
+                    <th:block th:text="${ln}"></th:block>
+                </p>
             </div>
         </section>
-        <section th:if="${locationCity}">
+        <section th:if="${lc}">
             <ul th:if="${locationsFilteredByCity}">
                 <li th:each="ev2 : ${locationsFilteredByCity}">
                     <th:block th:text="${ev2.name}"></th:block>
@@ -70,10 +109,12 @@
                 </li>
             </ul>
             <div th:if="${locationsFilteredByCity.isEmpty()}">
-                <p class="notAvailableEvent">No available events in location <th:block th:text="${locationCity}"></th:block></p>
+                <p class="notAvailableEvent">No available events in location
+                    <th:block th:text="${lc}"></th:block>
+                </p>
             </div>
         </section>
-        <section th:if="${locationCountry}">
+        <section th:if="${lcountry}">
             <ul th:if="${locationsFilteredByCountry}">
                 <li th:each="ev3 : ${locationsFilteredByCountry}">
                     <th:block th:text="${ev3.name}"></th:block>
@@ -83,13 +124,15 @@
                 </li>
             </ul>
             <div th:if="${locationsFilteredByCountry.isEmpty()}">
-                <p class="notAvailableEvent">No available events in location <th:block th:text="${locationCountry}"></th:block></p>
+                <p class="notAvailableEvent">No available events in location
+                    <th:block th:text="${lcountry}"></th:block>
+                </p>
             </div>
         </section>
     </form>
     <!-- Events to filter out the last requirement 9.-->
-    <!-- prikaz na podatoci samo, filter -->
-    <form th:method="GET" th:action="@{/event-list}">
+    <!-- DONE !--> <!-- prikaz na podatoci samo, filter -->
+    <form action="/events" method="get">
         <h3>Search event</h3>
         <label>Search event by Name: </label>
         <input type="text" name="searchName">
@@ -99,57 +142,84 @@
         <input type="text" name="searchRating"><br>
         <input type="submit" value="Filter">
 
-        <section th:if="${searchString}">
-            <h5>Filtered by name: <strong><th:block th:text="${searchString}"></th:block></strong></h5>
+        <section th:if="${sn}">
+            <h5>Filtered by name: <strong>
+                <th:block th:text="${sn}"></th:block>
+            </strong></h5>
             <ul>
-                <li th:each="filterEvent : ${filterEventsByName}">
-                    <span class="filterHighlight"><th:block th:text="${filterEvent.name}"></th:block></span>
+                <li th:each="searchedEvent : ${searchEventsByName}">
+                    <span class="filterHighlight"><th:block th:text="${searchedEvent.getName()}"></th:block></span>
                     <span>(</span>
-                    <th:block th:text="${filterEvent.description}"></th:block>
+                    <th:block th:text="${searchedEvent.getDescription()}"></th:block>
                     <span>)</span>
-                    <th:block th:text="${filterEvent.popularityScore}"></th:block>
+                    <th:block th:text="${searchedEvent.getPopularityScore()}"></th:block>
                 </li>
             </ul>
         </section>
-        <section th:if="${filterEventsByRating}">
-            <h5>Filtered events with rating greater or equal to: <strong><th:block th:text="${searchRating}"></th:block></strong></h5>
+        <section th:if="${sr}">
+            <h5>Filtered events with rating greater or equal to: <strong>
+                <th:block th:text="${sr}"></th:block>
+            </strong></h5>
             <ul>
-                <li th:each="filterEvent : ${filterEventsByRating}">
-                    <th:block th:text="${filterEvent.name}"></th:block>
+                <li th:each="filterEvent : ${searchEventsByRating}">
+                    <th:block th:text="${filterEvent.getName()}"></th:block>
                     <span>(</span>
-                    <th:block th:text="${filterEvent.description}"></th:block>
+                    <th:block th:text="${filterEvent.getDescription()}"></th:block>
                     <span>)</span>
-                    <span class="filterHighlight"><th:block th:text="${filterEvent.popularityScore}"></th:block></span>
+                    <span class="filterHighlight"><th:block th:text="${filterEvent.getPopularityScore()}"></th:block></span>
                 </li>
             </ul>
         </section>
     </form>
 
-
-    <form th:method="POST" th:action="@{/event-booking}">
+    <!-- list all of the events > -->
+    <form th:action="@{/bookedEvent}" th:method="get" id="main-form">
         <h2>Choose an event:</h2>
         <!-- Display radio buttons for each event,
                 the value should be the event name
                 and the displayed text should be Name: <event_name>, Description: <event_description>, Rating: <popularity_score> -->
         <!-- prakjame podatoci preku request-ot =) -->
         <!--First choose an event -->
-        <div th:each="event : ${events}">
-            <input type="radio" name="event" th:value="${event.name}">
+        <div th:each=" e : ${events}">
+            <input type="radio" name="event" th:value="${e.getName()}">
             <label>
-                <span class="label"><b>Name : </b></span><th:block th:text="${event.name}"></th:block>
-                <span class="label"><b>Description : </b></span><th:block th:text="${event.description}" ></th:block>
-                <span class="label"><b>Rating : </b></span><th:block th:text="${event.popularityScore}"></th:block></label>
-                <span class="label"><b>Location : </b></span><th:block th:text="${event.location}"></th:block></label>
+                <span class="label"><b>Name : </b></span>
+                <th:block th:text="${e.getName()}"></th:block>
+                <span class="label"><b>Description : </b></span>
+                <th:block th:text="${e.getDescription()}"></th:block>
+                <span class="label"><b>Rating : </b></span>
+                <th:block th:text="${e.getPopularityScore()}"></th:block>
+                <span class="label"><b>Location : </b></span>
+                <th:block th:text="${e.getLocation()}"></th:block>
+            </label>
+            <span class="buttons">
+                <div class="delete-button">
+                    <a th:href="@{'/events/delete/{eventId}'(eventId=${e.getId()})}" style="text-decoration: none;"><i>Delete</i></a>
+                </div>
+                 <div class="edit-button">
+                    <a th:href="@{'/events/edit/{eventId}'(eventId=${e.getId()})}" style="text-decoration: none;"><i>Edit</i></a>
+                </div>
+            </span>
         </div>
 
         <!-- Second select number of tickets -->
-        <form>
+        <div>
             <h2>Choose number of tickets:</h2>
             <input type="number" name="numTickets" min="1" max="10"><br/>
             <br/>
             <input type="submit" value="Book">
-        </form>
+        </div>
     </form>
+    <!-- button to add new event -->
+    <div class="add-button-div">
+        <button class="add-button">
+            <a href="/events/add-event" style="text-decoration: none;">Add an Event</a>
+        </button>
+    </div>
+
+    <footer>
+
+    </footer>
 </main>
 </body>
 </html>
