@@ -3,6 +3,7 @@ package mk.ukim.finki.wp.lab.repository;
 import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
 import mk.ukim.finki.wp.lab.model.Event;
 import mk.ukim.finki.wp.lab.model.Location;
+import mk.ukim.finki.wp.lab.model.Review;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -43,4 +44,14 @@ public class EventRepository {
     public void deleteEventById(long id) {
         DataHolder.events.removeIf(event -> event.getId().equals(id));
     }
+
+    // za dadeno id na event stavi mu review
+    //TODO proveri posle vo logikata
+    public void addReviewToEvent(Long eventId, Review review){
+        if(findById(eventId).isPresent()){
+            Event event = findById(eventId).get();
+            event.getReviewList().add(review);
+        }
+    }
+
 }

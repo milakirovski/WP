@@ -2,6 +2,7 @@ package mk.ukim.finki.wp.lab.service;
 
 import mk.ukim.finki.wp.lab.model.Event;
 import mk.ukim.finki.wp.lab.model.Location;
+import mk.ukim.finki.wp.lab.model.Review;
 import mk.ukim.finki.wp.lab.model.exceptions.LocationNotFoundException;
 
 import java.util.List;
@@ -23,4 +24,6 @@ public interface EventService {
     public Optional<Event> findById(long id);
 
     public void deleteEventById(long id);
+
+    public void addReviewToEvent(Long eventId, Review review);
 }

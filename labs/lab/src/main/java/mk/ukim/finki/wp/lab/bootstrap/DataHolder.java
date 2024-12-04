@@ -4,6 +4,7 @@ import jakarta.annotation.PostConstruct;
 import mk.ukim.finki.wp.lab.model.Event;
 import mk.ukim.finki.wp.lab.model.EventBooking;
 import mk.ukim.finki.wp.lab.model.Location;
+import mk.ukim.finki.wp.lab.model.Review;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

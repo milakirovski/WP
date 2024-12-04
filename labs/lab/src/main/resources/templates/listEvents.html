@@ -199,6 +199,9 @@
                  <div class="edit-button">
                     <a th:href="@{'/events/edit/{eventId}'(eventId=${e.getId()})}" style="text-decoration: none;"><i>Edit</i></a>
                 </div>
+                <div class="review-button">
+                    <a th:href="@{'/events/review/{eventId}'(eventId=${e.getId()})}" style="text-decoration: none;"><i>Add review</i></a>
+                </div>
             </span>
         </div>
 

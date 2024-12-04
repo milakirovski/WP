@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review page</title>
+</head>
+<body>
+
+<form th:action="@{'/events/review/process'}" th:method="post">
+    <h2>Add review for
+        <input name="id" type="hidden" th:value="${evId}">
+    </h2>
+    <label>Add content: </label>
+    <input type="text" name="reviewContent">
+    <br>
+    <label>Give starts:</label>
+    <input type="text" name="reviewStars">
+    <br>
+    <input type="Submit" value="Submit review">
+</form>
+
+</body>
+</html>

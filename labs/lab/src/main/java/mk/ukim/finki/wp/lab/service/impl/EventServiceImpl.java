@@ -3,6 +3,7 @@ package mk.ukim.finki.wp.lab.service.impl;
 import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
 import mk.ukim.finki.wp.lab.model.Event;
 import mk.ukim.finki.wp.lab.model.Location;
+import mk.ukim.finki.wp.lab.model.Review;
 import mk.ukim.finki.wp.lab.model.exceptions.LocationNotFoundException;
 import mk.ukim.finki.wp.lab.repository.EventRepository;
 import mk.ukim.finki.wp.lab.repository.LocationRepository;
@@ -85,5 +86,10 @@ public class EventServiceImpl implements EventService {
     @Override
     public void deleteEventById(long id) {
         eventRepository.deleteEventById(id);
+    }
+
+    @Override
+    public void addReviewToEvent(Long eventId, Review review) {
+        eventRepository.addReviewToEvent(eventId,review);
     }
 }

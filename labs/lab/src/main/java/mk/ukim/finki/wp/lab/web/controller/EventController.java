@@ -4,6 +4,7 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import mk.ukim.finki.wp.lab.model.Event;
 import mk.ukim.finki.wp.lab.model.Location;
+import mk.ukim.finki.wp.lab.model.Review;
 import mk.ukim.finki.wp.lab.model.exceptions.LocationNotFoundException;
 import mk.ukim.finki.wp.lab.service.EventService;
 import mk.ukim.finki.wp.lab.service.LocationService;
@@ -120,6 +121,31 @@ public class EventController {
     @GetMapping("/delete/{eventId}")
     public String deleteEvent(@PathVariable Long eventId) {
         eventService.deleteEventById(eventId);
+        return "redirect:/events";
+    }
+
+    @GetMapping("/review/{eventId}")
+    public String addReviewPage(@PathVariable Long eventId,
+                                Model model) {
+        model.addAttribute("evId",eventId);
+
+        return "reviewPage";
+    }
+
+    @PostMapping("/review/process")
+    public String processReview(@RequestParam String reviewContent,
+                                @RequestParam String reviewStars,
+                                @RequestParam Long id,
+                                Model model){
+
+        double starts = Double.parseDouble(reviewStars.trim());
+
+        Review review = new Review(reviewContent, starts);
+
+        eventService.addReviewToEvent(id, review);
+
+        model.addAttribute("review", review);
+
         return "redirect:/events";
     }
 
