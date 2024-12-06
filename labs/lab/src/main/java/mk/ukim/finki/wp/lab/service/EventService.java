@@ -19,11 +19,11 @@ public interface EventService {
     List<Event> filterEventsByLocationCity(String locationCity);
     List<Event> filterEventsByLocationCountry(String locationCountry);
 
-    Optional<Event> save(String name, String description, double popularityScore, Long locationId) throws LocationNotFoundException;
+    Optional<Event> saveEvent(String name, String description, double popularityScore, Long locationId) throws LocationNotFoundException;
 
     public Optional<Event> findById(long id);
 
-    public void deleteEventById(long id);
+    public void deleteEventById(Long id);
 
     public void addReviewToEvent(Long eventId, Review review);
 }

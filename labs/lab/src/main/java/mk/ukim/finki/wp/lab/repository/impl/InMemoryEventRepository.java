@@ -1,4 +1,4 @@
-package mk.ukim.finki.wp.lab.repository;
+package mk.ukim.finki.wp.lab.repository.impl;
 
 import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
 import mk.ukim.finki.wp.lab.model.Event;
@@ -12,7 +12,7 @@ import java.util.Optional;
 //CRUD operations
 //For handling in-memory storage events
 @Repository
-public class EventRepository {
+public class InMemoryEventRepository {
 
     public List<Event> findAll() {
         return DataHolder.events;

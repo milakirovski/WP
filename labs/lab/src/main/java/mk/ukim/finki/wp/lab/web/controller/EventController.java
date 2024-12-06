@@ -85,12 +85,11 @@ public class EventController {
                             @RequestParam String description,
                             @RequestParam Double popularityScore,
                             @RequestParam Long location) throws LocationNotFoundException {
-        eventService.save(name, description, popularityScore, location);
+        eventService.saveEvent(name, description, popularityScore, location);
         return "redirect:/events";
 
     }
 
-    //show the page where we add the events data -> (Add an Event button)
     @GetMapping("/add-event")
     public String getEventAdditionOrEditPage(Model model) {
 
@@ -100,7 +99,6 @@ public class EventController {
         return "add-event";
     }
 
-    //show modified version of the add-event html, for modification an event ifo
     @GetMapping("/edit/{eventId}")
     public String editEvent(@PathVariable Long eventId,
                             Model model) {

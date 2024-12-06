@@ -1,0 +1,15 @@
+version: "3"
+services:
+  wp-lab:
+    image: "postgres"
+    container_name: "wp_events_labA"
+    environment:
+      - POSTGRES_USER=wp
+      - POSTGRES_PASSWORD=wp123
+      - POSTGRES_DB=events
+    ports:
+      - "5455:5432"
+    volumes:
+      - postgres-data-events:/var/lib/postgresql/data
+volumes:
+  postgres-data-events:

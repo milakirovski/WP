@@ -1,4 +1,4 @@
-package mk.ukim.finki.wp.lab.repository;
+package mk.ukim.finki.wp.lab.repository.impl;
 
 import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
 import mk.ukim.finki.wp.lab.model.Location;
@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Repository
-public class LocationRepository {
+public class InMemoryLocationRepository {
 
     public List<Location> findAll(){
         return DataHolder.locations;
