@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Review page</title>
 </head>
 <body>
+<header>
+    <h1>Review Page</h1>
+</header>
+<div class="LogOutAndNameBox" style="float: right; position: relative; bottom: 50px">
+    <span>Logged in as:</span><b><span sec:authentication="name" style="margin-right: 7px;"></span></b>
+    <a href="/logout">Logout</a>
+</div>
 
 <form th:action="@{'/events/review/process'}" th:method="post">
     <h2>Add review for

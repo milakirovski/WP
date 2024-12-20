@@ -26,7 +26,7 @@ public class DataHolder {
                 "Paris",
                 "France",
                 "Champ de Mars, 5 Avenue Anatole, 75007 Paris, France",
-                "100",
+                100,
                 "An iconic landmark of France and one of the most recognizable structures in the world."
         );
         locations.add(eiffel_tower);
@@ -36,7 +36,7 @@ public class DataHolder {
                 "New York City",
                 "USA",
                 "Liberty Island, New York, NY 10004, United States",
-                "5000",
+                5000,
                 "Central Park, New York, NY 10024, United States"
         );
         locations.add(central_park);
@@ -46,7 +46,7 @@ public class DataHolder {
                 "Tokyo",
                 "Japan",
                 "4 Chome-2-8 Shibakoen, Minato City, Tokyo 105-0011, Japan",
-                "300",
+                300,
                 "A communications and observation tower in Tokyo inspired by the Eiffel Tower."
         );
         locations.add(tokyo_tower);
@@ -56,7 +56,7 @@ public class DataHolder {
                 "Sydney",
                 "Australia",
                 "Bennelong Point, Sydney NSW 2000, Australia",
-                "400",
+                400,
                 "An architectural marvel, the Sydney Opera House is a UNESCO World Heritage site."
         );
         locations.add(opera_house);
@@ -66,7 +66,7 @@ public class DataHolder {
                 "Austin",
                 "USA",
                 "1600 S Lakeshore Blvd, Austin, TX 78741, United States",
-                "1100",
+                1100,
                 "A spacious park with picnic areas, scenic lake views, and recreational facilities, perfect for family gatherings and reunions."
         );
         locations.add(lakeview_Park);
@@ -77,7 +77,7 @@ public class DataHolder {
                 "Rio de Janeiro",
                 "Brazil",
                 "Parque Nacional da Tijuca - Alto da Boa Vista, Rio de Janeiro - RJ, Brazil",
-                "600",
+                600,
                 "A massive statue of Jesus Christ overlooking the city, one of the New Seven Wonders of the World."
         );
         locations.add(Christ_the_Redeemer);
@@ -87,7 +87,7 @@ public class DataHolder {
                 "New York City",
                 "USA",
                 "476 5th Ave, New York, NY 10018, United States",
-                "900",
+                900,
                 "One of the largest public libraries in the world, renowned for its beautiful architecture and extensive collection of books and resources."
         );
         locations.add(library);
@@ -97,7 +97,7 @@ public class DataHolder {
                 "New York City",
                 "USA",
                 "234 W 42nd St, New York, NY 10036, United States",
-                "800",
+                800,
                 "A popular cinema located in the heart of Times Square, featuring multiple screens and the latest movie releases."
         );
         locations.add(cinema);
@@ -107,7 +107,7 @@ public class DataHolder {
                 "Agra",
                 "India",
                 "Dharmapuri, Forest Colony, Tajganj, Agra, Uttar Pradesh 282001, India",
-                "900",
+                900,
                 "A stunning white marble mausoleum, widely recognized as a symbol of love and devotion."
         );
         locations.add(taj_mahal);
@@ -117,7 +117,7 @@ public class DataHolder {
                 "Washington, D.C.",
                 "USA",
                 "430 17th St NW, Washington, D.C. 20006, United States",
-                "1000",
+                1000,
                 "The headquarters of the American Red Cross, an organization providing emergency assistance, disaster relief, and education."
         );
         locations.add(red_cross);

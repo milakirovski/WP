@@ -9,6 +9,7 @@ import mk.ukim.finki.wp.lab.model.exceptions.LocationNotFoundException;
 import mk.ukim.finki.wp.lab.service.EventService;
 import mk.ukim.finki.wp.lab.service.LocationService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -81,6 +82,7 @@ public class EventController {
     }
 
     @PostMapping("/add")
+    @PreAuthorize("hasRole('ADMIN')")
     public String saveEvent(@RequestParam String name,
                             @RequestParam String description,
                             @RequestParam Double popularityScore,
@@ -91,6 +93,7 @@ public class EventController {
     }
 
     @GetMapping("/add-event")
+    @PreAuthorize("hasRole('ADMIN')")
     public String getEventAdditionOrEditPage(Model model) {
 
         List<Location> locations = locationService.findAll();
@@ -100,6 +103,7 @@ public class EventController {
     }
 
     @GetMapping("/edit/{eventId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String editEvent(@PathVariable Long eventId,
                             Model model) {
         if (eventService.findById(eventId).isPresent()) {
@@ -117,6 +121,7 @@ public class EventController {
     }
 
     @GetMapping("/delete/{eventId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteEvent(@PathVariable Long eventId) {
         eventService.deleteEventById(eventId);
         return "redirect:/events";

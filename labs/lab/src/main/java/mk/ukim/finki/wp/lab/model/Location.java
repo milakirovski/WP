@@ -18,12 +18,12 @@ public class Location {
     private String city;
     private String country;
     private String address;
-    private String capacity;
+    private int capacity;
     private String description;
     @OneToMany(mappedBy = "location")
     private List<Event> eventList;
 
-    public Location(String name, String city, String country, String address, String capacity, String description) {
+    public Location(String name, String city, String country, String address, int capacity, String description) {
         this.name = name;
         this.city = city;
         this.country = country;

@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Add product</title>
+    <title>Add event</title>
 </head>
 <body>
+<header>
+    <h1>Add event</h1>
+</header>
+<div class="LogOutAndNameBox" style="float: right; position: relative; bottom: 50px">
+    <span>Logged in as:</span><b><span sec:authentication="name" style="margin-right: 7px;"></span></b>
+    <a href="/logout">Logout</a>
+
+</div>
 
 <div class="container">
     <form action="/events/add" method="post">

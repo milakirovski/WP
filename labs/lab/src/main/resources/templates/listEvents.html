@@ -1,5 +1,5 @@
 <!DOCTYPE html >
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <title>Event Booking page - Welcome and choose an Event</title>
@@ -67,6 +67,11 @@
 <header>
     <h1>Welcome to our Event Booking App</h1>
 </header>
+<div class="LogOutAndNameBox" style="float: right; position: relative; bottom: 50px">
+    <span>Logged in as:</span><b><span sec:authentication="name" style="margin-right: 7px;"></span></b>
+    <a href="/logout">Logout</a>
+
+</div>
 <main>
     <!-- DONE !--> <!-- Filter events based on the location bonus -->
     <form action="/events" method="get">
@@ -193,12 +198,16 @@
                 <th:block th:text="${e.getLocation()}"></th:block>
             </label>
             <span class="buttons">
-                <div class="delete-button">
-                    <a th:href="@{'/events/delete/{eventId}'(eventId=${e.getId()})}" style="text-decoration: none;"><i>Delete</i></a>
-                </div>
-                 <div class="edit-button">
-                    <a th:href="@{'/events/edit/{eventId}'(eventId=${e.getId()})}" style="text-decoration: none;"><i>Edit</i></a>
-                </div>
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                    <div class="delete-button">
+                        <a th:href="@{'/events/delete/{eventId}'(eventId=${e.getId()})}" style="text-decoration: none;"><i>Delete</i></a>
+                    </div>
+                </th:block>
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                     <div class="edit-button">
+                        <a th:href="@{'/events/edit/{eventId}'(eventId=${e.getId()})}" style="text-decoration: none;"><i>Edit</i></a>
+                    </div>
+                </th:block>
                 <div class="review-button">
                     <a th:href="@{'/events/review/{eventId}'(eventId=${e.getId()})}" style="text-decoration: none;"><i>Add review</i></a>
                 </div>
@@ -214,11 +223,13 @@
         </div>
     </form>
     <!-- button to add new event -->
-    <div class="add-button-div">
-        <button class="add-button">
-            <a href="/events/add-event" style="text-decoration: none;">Add an Event</a>
-        </button>
-    </div>
+    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+        <div class="add-button-div">
+            <button class="add-button">
+                <a href="/events/add-event" style="text-decoration: none;">Add an Event</a>
+            </button>
+        </div>
+    </th:block>
 
     <footer>
 

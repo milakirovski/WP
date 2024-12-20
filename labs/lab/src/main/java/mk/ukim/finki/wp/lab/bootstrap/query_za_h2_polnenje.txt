@@ -1,0 +1,15 @@
+INSERT INTO LOCATION (CAPACITY, ID, ADDRESS, CITY, COUNTRY, DESCRIPTION, NAME)
+VALUES
+(5000, 101, '123 Main St', 'New York', 'USA', 'A beautiful outdoor venue for concerts and events.', 'Central Park'),
+(2000, 102, '45 Art St', 'Chicago', 'USA', 'An elegant hall for art exhibitions and cultural events.', 'Art Gallery Hall'),
+(10000, 103, '678 Innovation Blvd', 'San Francisco', 'USA', 'A state-of-the-art convention center.', 'Tech Convention Center'),
+(30000, 104, '22 Marathon Lane', 'Boston', 'USA', 'A large stadium perfect for sports and charity events.', 'City Stadium'),
+(8000, 105, '88 Food Court', 'Miami', 'USA', 'An open plaza for food festivals and markets.', 'Downtown Plaza');
+
+INSERT INTO EVENT (POPULARITY_SCORE, ID, LOCATION_ID, DESCRIPTION, NAME)
+VALUES
+(85, 1, 101, 'A thrilling music concert featuring top artists.', 'Music Blast'),
+(60, 2, 102, 'A weekend art exhibition showcasing modern art.', 'Art Expo'),
+(95, 3, 103, 'The biggest tech conference of the year.', 'Tech Innovators Summit'),
+(70, 4, 104, 'A charity marathon for a good cause.', 'Run for Hope'),
+(80, 5, 105, 'A culinary festival with global cuisine.', 'Food Fiesta');
